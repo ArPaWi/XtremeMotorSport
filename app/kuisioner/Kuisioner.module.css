@@ -1,0 +1,53 @@
+.form{
+    background-color: rgb(255, 115, 0);
+    background-blend-mode: hard-light;
+    width: 80vw;
+    padding: 1rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    color: white;
+}
+
+.form .identity{
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.identity input{
+    height: 1.5rem;
+    border-style: solid;
+    border-color: white;
+    border-radius: 0.4rem;
+    background: none;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form .isi{
+    width: inherit;
+}
+
+.form .isi input::-webkit-input-placeholder{
+    color: white;
+    text-align: center;
+    opacity: 70%;
+}
+
+.form .isi textarea::-webkit-input-placeholder{
+    color: white;
+    text-align: center;
+    opacity: 70%;
+}
+
+.saran{
+    padding-bottom: 1rem;
+}
+
+.form p{
+    text-align: justify;
+}

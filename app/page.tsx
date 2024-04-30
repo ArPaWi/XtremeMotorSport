@@ -18,11 +18,11 @@ import {
 
 export default function Home() {
   return (
-    <main style={{ maxWidth: "100vw" }}>
+    <main style={{ maxWidth: "100%" }}>
       <nav>
         <div className={styles.logo}>
-          <Image
-            src={logo}
+          <img
+            src="./LOGO_XTM.png"
             alt="Xtreme Motorsport Logo"
             style={{
               width: 120,
