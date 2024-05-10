@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./Kuisioner.module.css";
+import axios from 'axios';
 import {
   RadioGroup,
   Radio,
@@ -30,6 +31,42 @@ const Kuisioner = () => {
   // Fungsi untuk memilih mekanik
   const selectMechanic = (mechanicId: number) => {
     setSelectedMechanic(mechanicId);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const nama = (document.getElementById('nama') as HTMLInputElement)?.value.toString();
+      const motor = (document.getElementById('motor') as HTMLInputElement)?.value.toString();
+      const nomor = (document.getElementById('nomor') as HTMLInputElement)?.value.toString();
+      
+      const data = {
+        nama,
+        motor,
+        nomor,
+        mekanik: selectedMechanic,
+        sk1: (document.querySelector('input[name="sk1-group"]:checked') as HTMLInputElement)?.value,
+        sk2: (document.querySelector('input[name="sk2-group"]:checked') as HTMLInputElement)?.value,
+        sk3: (document.querySelector('input[name="sk3-group"]:checked') as HTMLInputElement)?.value,
+        sk4: (document.querySelector('input[name="sk4-group"]:checked') as HTMLInputElement)?.value,
+        sk5: (document.querySelector('input[name="sk5-group"]:checked') as HTMLInputElement)?.value,
+        sk6: (document.querySelector('input[name="sk6-group"]:checked') as HTMLInputElement)?.value,
+        saran: (document.getElementById('saran') as HTMLInputElement)?.value.toString()
+      };
+
+      console.log("Data yang dikirim:", data);
+  
+      const response = await axios.post('http://localhost:3308/api/responses', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      console.log(response.data);
+      // Tambahkan logika sesuai respons dari server (misalnya, notifikasi bahwa data berhasil disimpan)
+    } catch (error) {
+      console.error('Error saat mengirim data:', error);
+      // Tambahkan logika sesuai kebutuhan, seperti menampilkan pesan kesalahan kepada pengguna
+    }
   };
 
   return (
@@ -614,6 +651,7 @@ const Kuisioner = () => {
             <h3>Saran dan Komentar Customer</h3>
             {/* Input untuk saran dan komentar */}
             <textarea
+              id="saran" // Tambahkan id
               rows={4}
               // cols={50}
               style={{
@@ -632,6 +670,7 @@ const Kuisioner = () => {
 
           {/* Tombol Submit */}
           <button
+            onClick={handleSubmit} // Tambahkan event handler onClick
             style={{
               width: "inherit",
               height: "2rem",
@@ -640,7 +679,7 @@ const Kuisioner = () => {
               borderRadius: "1rem",
               color: "white",
             }}
-            type="submit"
+            type="button" // Ganti type menjadi button
           >
             Submit
           </button>

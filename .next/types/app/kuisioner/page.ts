@@ -1,4 +1,4 @@
-// File: /home/arya/XtremeMotorSport/app/kuisioner/page.tsx
+// File: C:\Users\hp\Desktop\XtremeMotorSport\app\kuisioner\page.tsx
 import * as entry from '../../../../app/kuisioner/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
