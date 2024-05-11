@@ -55,7 +55,7 @@ const Kuisioner = () => {
 
       console.log("Data yang dikirim:", data);
   
-      const response = await axios.post('http://localhost:3308/api/responses', data, {
+      const response = await axios.post('http://localhost:5000/api/responses', data, {
         headers: {
           'Content-Type': 'application/json'
         }

@@ -1,13 +1,17 @@
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors');
 
 const app = express();
 
+// Gunakan middleware cors
+app.use(cors());
+
 // Konfigurasi koneksi MySQL
 const db = mysql.createConnection({
-  host: '127.0.0.1',
+  host: 'localhost',
   user: 'root', // Ganti dengan username MySQL Anda
-  password: 'xtrememotorsport@08', // Ganti dengan password MySQL Anda
+  password: 'Admin123@08', // Ganti dengan password MySQL Anda
   database: 'xtrememotorsport', // Ganti dengan nama database yang telah Anda buat
   port: '3308', // Port MySQL Anda
 });
@@ -37,7 +41,7 @@ app.post('/api/responses', (req, res) => {
       saran
     });
   
-    const sql = 'INSERT INTO responses (data_json) VALUES (?)';
+    const sql = 'INSERT INTO responses (responses) VALUES (?)';
     db.query(sql, [responses], (err, result) => {
       if (err) {
         console.error('Error executing MySQL query: ', err);
@@ -50,5 +54,5 @@ app.post('/api/responses', (req, res) => {
 });  
 
 // Port server
-const PORT = process.env.PORT || 3308;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
