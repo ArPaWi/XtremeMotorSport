@@ -1,0 +1,134 @@
+.dashboard{
+    background-color: black;
+    height: fit-content;
+    padding: 1rem;
+    border-radius: 0.7rem;
+}
+
+.dashboard button{
+    background-color: rgb(255, 94, 0);
+    color: white;
+    padding: 10px;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 700;
+    height: fit-content;
+}
+
+.dashboard h4{
+    font-size: large;
+    font-weight: 500;
+    height: fit-content;
+}
+
+.d1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-weight: bold;
+    text-align: center;
+}
+
+.d2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mekanik{
+    width: 47.5%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    align-content: center;
+}
+
+.sk1{
+    width: 22%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sk2{
+    width: 22%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sk3{
+    width: 22%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sk4{
+    width: 22%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sk5{
+    width: 22%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.sk6{
+    width: 22%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.data{
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 30px;
+    border-radius: 1rem;
+}
+
+.data h4{
+    font-weight: bold;
+}
+
+.tabel{
+    width: 70%;
+}
+
+.tabel h4{
+    text-align: center;
+}
+
+.jml_kustomer{
+    width: 25%;
+    background-color: rgb(255, 94, 0);
+    padding: 10px;
+    border-radius: 1rem;
+    color: white;
+    text-align: center;
+}
+
+.jml_kustomer div div{
+    font-size: 10rem;
+}
+
+.jml_kustomer div p{
+    font-size: larger;
+    margin-top: -2rem;
+}
+
+.jml_kustomer div{
+    height: 70%;
+    align-items: center;
+    align-content: center;
+}
