@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const Login = () => {
   return (
@@ -50,22 +51,24 @@ const Login = () => {
               }}
             />
           </div>
-          <button
-            type="submit"
-            style={{
-              backgroundColor: "#ff6600",
-              color: "white",
-              padding: "10px 20px",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontWeight: "bold",
-              width: "100%",
-              boxSizing: "border-box",
-            }}
-          >
-            Login
-          </button>
+          <Link href="/dashboard">
+            <button
+              type="submit"
+              style={{
+                backgroundColor: "#ff6600",
+                color: "white",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                width: "100%",
+                boxSizing: "border-box",
+              }}
+            >
+              Login
+            </button>
+          </Link>
         </form>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "./Dashboard.module.css";
 import Mekanik from "./components/Mekanik/mekanik";
 import SK1 from "./components/SK1/sk1";
@@ -24,7 +25,9 @@ const Dashboard = () => {
     <div className={styles.dashboard}>
         <div style={{color: "white", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <h1>Hello, {"username"}</h1>
-            <button>LOG OUT</button>
+            <Link href="/login">
+              <button style={{cursor: "pointer"}}>LOG OUT</button>
+            </Link>
         </div>
         <div className={styles.d1}>
             <div className={styles.mekanik}>

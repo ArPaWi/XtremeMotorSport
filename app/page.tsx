@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./Page.module.css";
 import logo from "../public/LOGO_XTM.png";
@@ -34,42 +35,46 @@ export default function Home() {
         </div>
         <div style={{ display: "flex", gap: 5 }}>
           <div>
-            <button
-              onClick={() => {}}
-              style={{
-                background: "rgb(0, 0, 0)",
-                color: "white",
-                border: "none",
-                borderRadius: "1rem",
-                cursor: "pointer",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: 3,
-              }}
-            >
-              <Admin />
-              LOGIN
-            </button>
+            <Link href="/login">
+              <button
+                onClick={() => {}}
+                style={{
+                  background: "rgb(0, 0, 0)",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "1rem",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: 3,
+                }}
+              >
+                <Admin />
+                LOGIN
+              </button>
+            </Link>
           </div>
           <div>
-            <button
-              onClick={() => {}}
-              style={{
-                background: "rgb(0, 0, 0)",
-                color: "white",
-                border: "none",
-                borderRadius: "1rem",
-                cursor: "pointer",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: 3,
-              }}
-            >
-              <Kuis />
-              ISI KUISIONER
-            </button>
+            <Link href="/kuisioner">
+              <button
+                onClick={() => {}}
+                style={{
+                  background: "rgb(0, 0, 0)",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "1rem",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: 3,
+                }}
+              >
+                <Kuis />
+                ISI KUISIONER
+              </button> 
+            </Link>
           </div>
         </div>
       </nav>
