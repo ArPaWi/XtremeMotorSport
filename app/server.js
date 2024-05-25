@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2/promise'); // Menggunakan versi promise dari mysql2
 const cors = require('cors');
+// const bcrypt = require("bcrypt");
 
 const app = express();
 
@@ -290,6 +291,50 @@ initializeDB().then(db => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  // Endpoint untuk login
+  app.post("/api/login", async (req, res) => {
+    const { username, password } = req.body;
+
+    // Lakukan pengecekan username dan password di database
+    try {
+      const user = await getUserByUsername(username);
+
+      if (!user) {
+        res.status(404).json({ error: "User not found" });
+        return;
+      }
+
+      if (password === user.password) {
+        // Jika password cocok, kirimkan response berhasil
+        res.status(200).json({ success: true });
+      } else {
+        res.status(401).json({ error: "Invalid password" });
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  // Fungsi untuk mendapatkan user berdasarkan username
+  async function getUserByUsername(username) {
+    try {
+      // Lakukan query ke database untuk mengambil data user berdasarkan username
+      const [rows] = await db.execute('SELECT * FROM admin WHERE username = ?', [username]);
+
+      // Jika tidak ada hasil dari query, kembalikan null
+      if (rows.length === 0) {
+        return null;
+      }
+
+      // Kembalikan data user pertama yang ditemukan
+      return rows[0];
+    } catch (error) {
+      console.error('Error fetching user by username:', error);
+      throw error;
+    }
+  }
 
   // Port server
   const PORT = process.env.PORT || 5000;
