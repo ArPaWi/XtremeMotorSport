@@ -10,30 +10,52 @@ import SK4 from "./components/SK4/sk4";
 import SK5 from "./components/SK5/sk5";
 import SK6 from "./components/SK6/sk6";
 import Tabel from "./components/Tabel/tabel";
+import Loading from "./components/Loading/loading";
 
 const Dashboard = () => {
   const [jumlahKustomer, setJumlahKustomer] = useState(0);
-  const [username, setUsername] = useState(""); // State untuk menyimpan nama pengguna
+  const [username, setUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/jumlah_responden')
-      .then(response => response.json())
-      .then(data => setJumlahKustomer(data.jml_responden))
-      .catch(error => console.error('Error fetching data:', error));
-
-    // Mendapatkan nama pengguna dari local storage (atau Anda bisa mendapatkannya dari mana pun Anda menyimpannya)
+    // Cek apakah pengguna telah login
     const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
+    if (!storedUsername) {
+      // Jika tidak, arahkan pengguna kembali ke halaman login
+      window.location.href = '/login';
+    } else {
+      // Jika iya, ambil data lain yang diperlukan untuk Dashboard
+      setIsLoggedIn(true);
       setUsername(storedUsername);
+
+      fetch('http://localhost:5000/api/jumlah_responden')
+        .then(response => response.json())
+        .then(data => setJumlahKustomer(data.jml_responden))
+        .catch(error => console.error('Error fetching data:', error));
     }
   }, []);
+
+  if (!isLoggedIn) {
+    return <div>
+        <div style={{display: "grid", height: "100vh", placeContent: "center", placeItems: "center"}}>
+          <Loading/>
+        </div>
+    </div>;
+  }
+
+  const handleLogout = () => {
+    // Hapus akun atau username yang tersimpan dari local storage
+    localStorage.removeItem("username");
+    // Set status login kembali ke false
+    setIsLoggedIn(false);
+  };
 
   return (
     <div className={styles.dashboard}>
       <div style={{ color: "white", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h1>Hello, {username}</h1> {/* Menampilkan nama pengguna */}
         <Link href="/login">
-          <button style={{ cursor: "pointer" }}>LOG OUT</button>
+          <button style={{ cursor: "pointer" }} onClick={handleLogout}>LOG OUT</button>
         </Link>
       </div>
       <div className={styles.d1}>
