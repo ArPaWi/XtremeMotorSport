@@ -10,9 +10,30 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
+  interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    message: string;
+  }
+
+  const Modal: React.FC<ModalProps> = ({ isOpen, onClose, message }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className={styles.modalBackground}>
+        <div className={styles.modalContent}>
+          <p>{message}</p>
+          <button onClick={onClose}>Close</button>
+        </div>
+      </div>
+    );
+  };
+
 const Kuisioner = () => {
   // State untuk menyimpan pilihan mekanik yang dipilih oleh customer
   const [selectedMechanic, setSelectedMechanic] = useState<number | null>(null);
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   // Array data mekanik beserta gambarnya
   const mechanics = [
@@ -52,21 +73,27 @@ const Kuisioner = () => {
         sk6: (document.querySelector('input[name="sk6-group"]:checked') as HTMLInputElement)?.value,
         saran: (document.getElementById('saran') as HTMLInputElement)?.value.toString()
       };
-
-      console.log("Data yang dikirim:", data);
   
       const response = await axios.post('http://localhost:5000/api/responses', data, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
+
+      setShowSuccessPopup(true);
+
+      setTimeout(() => {
+        setShowSuccessPopup(false);
+        window.location.href = '/';
+      }, 5000);
   
-      console.log(response.data);
-      // Tambahkan logika sesuai respons dari server (misalnya, notifikasi bahwa data berhasil disimpan)
     } catch (error) {
       console.error('Error saat mengirim data:', error);
-      // Tambahkan logika sesuai kebutuhan, seperti menampilkan pesan kesalahan kepada pengguna
+      setShowErrorPopup(true);
     }
+    setTimeout(() => {
+      setShowErrorPopup(false);
+    }, 2000);
   };
 
   return (
@@ -78,6 +105,8 @@ const Kuisioner = () => {
         alignItems: "center",
       }}
     >
+      <Modal isOpen={showSuccessPopup} onClose={() => setShowSuccessPopup(false)} message="Terima kasih atas respon yang sudah anda berikan." />
+      <Modal isOpen={showErrorPopup} onClose={() => setShowErrorPopup(false)} message="Gagal menyimpan respon. Silakan coba lagi." />
       <div className={styles.form}>
         <h2 style={{ textAlign: "center" }}>FORM KUISIONER</h2>
         <div className={styles.isi}>
