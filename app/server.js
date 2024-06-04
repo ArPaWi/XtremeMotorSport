@@ -15,9 +15,9 @@ async function initializeDB() {
     const db = await mysql.createConnection({
       host: 'localhost',
       user: 'root', // Ganti dengan username MySQL Anda
-      password: 'Admin123@08', // Ganti dengan password MySQL Anda
+      password: 'Admin123#', // Ganti dengan password MySQL Anda
       database: 'xtrememotorsport', // Ganti dengan nama database yang telah Anda buat
-      port: '3308', // Port MySQL Anda
+      port: '3306', // Port MySQL Anda
     });
     console.log('Connected to MySQL database...');
     return db;
